@@ -110,7 +110,7 @@ export default function Portfolio() {
           >
             <div className="relative w-72 h-80 rounded-3xl bg-gradient-to-b from-sky-600 to-sky-900 p-[3px] shadow-2xl">
               <div className="w-full h-full bg-[#0c1222] rounded-3xl overflow-hidden relative">
-                <img src="my.png" alt="profile" className="w-full h-full object-cover" />
+                <img src="my1.png" alt="profile" className="w-full h-full object-cover" />
 
                 <span className="absolute top-4 right-4 text-white text-xs bg-white/10 px-2 py-1 rounded">JS</span>
                 <span className="absolute top-14 left-4 text-white text-xs bg-white/10 px-2 py-1 rounded">⚛️ React</span>
