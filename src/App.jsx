@@ -1,47 +1,49 @@
-// Updated React component with Framer Motion scroll animations for contact section
+// Updated React component with image-free project section
 import React from "react";
 import { motion } from "framer-motion";
 
 const projects = [
   {
     title: "Business Website",
-    desc: "Beautiful modern landing page for local businesses – restaurants, shops, salons.",
+    desc: "Beautiful modern landing page for local businesses – restaurants, shops, salons with responsive design and SEO optimization.",
     github: "https://github.com/Masum2",
     live: "#",
-    img: "project1.png",
-    tags: ["React", "Tailwind", "Vercel"],
+    tags: ["React", "Tailwind", "Vercel", "Framer Motion"],
   },
   {
     title: "MERN Auth System",
-    desc: "JWT, refresh tokens, OTP reset, admin roles – enterprise grade auth.",
+    desc: "Enterprise-grade authentication system with JWT, refresh tokens, OTP reset, and admin role management.",
     github: "https://github.com/Masum2",
     live: "#",
-    img: "project2.png",
-    tags: ["Node.js", "Express", "MongoDB"],
+    tags: ["Node.js", "Express", "MongoDB", "JWT"],
   },
   {
     title: "Mini E-commerce",
-    desc: "Product catalog, cart, checkout + admin CRUD dashboard.",
+    desc: "Full-featured e-commerce platform with product catalog, shopping cart, checkout system and admin dashboard.",
     github: "https://github.com/Masum2",
     live: "#",
-    img: "project3.png",
-    tags: ["React", "MongoDB"],
+    tags: ["React", "MongoDB", "Bkash", "Redux"],
   },
   {
     title: "Admin Dashboard",
-    desc: "Realtime charts, user logs, activity tracker.",
+    desc: "Comprehensive admin panel with real-time analytics, user management, activity tracking and data visualization.",
     github: "https://github.com/Masum2",
     live: "#",
-    img: "project4.png",
-    tags: ["Recharts", "React"],
+    tags: ["React", "Recharts", "Node.js", "MongoDB"],
   },
   {
-    title: "Chat App",
-    desc: "Socket.io chat with groups, media, typing indicator.",
+    title: "Chat Application",
+    desc: "Real-time chat application with group chats, media sharing, typing indicators and online status.",
     github: "https://github.com/Masum2",
     live: "#",
-    img: "project5.png",
-    tags: ["Socket.io", "Node", "React"],
+    tags: ["Socket.io", "Node", "React", "MongoDB"],
+  },
+  {
+    title: "Task Management",
+    desc: "Productivity app with task organization, team collaboration, progress tracking and deadline management.",
+    github: "https://github.com/Masum2",
+    live: "#",
+    tags: ["React", "Node.js", "MongoDB", "JWT"],
   },
 ];
 
@@ -176,9 +178,15 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* PROJECTS */}
+        {/* PROJECTS - UPDATED WITHOUT IMAGES */}
         <section id="projects" className="mt-24">
-          <div className="flex items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-between"
+          >
             <h3 className="text-3xl font-bold text-white">
               Featured <span className="text-sky-400">Projects</span>
             </h3>
@@ -186,41 +194,69 @@ export default function Portfolio() {
             <a href="https://github.com/Masum2" target="_blank" rel="noreferrer" className="text-sm text-sky-400 hover:text-sky-300 transition">
               View on GitHub →
             </a>
-          </div>
+          </motion.div>
 
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((p) => (
+          <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
               <motion.div
-                key={p.title}
+                key={project.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="p-[2px] rounded-2xl bg-gradient-to-b from-sky-600 to-sky-900 shadow-xl hover:scale-[1.03] transition"
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="group"
               >
-                <div className="bg-[#0c1222] rounded-2xl p-6 h-full flex flex-col">
-                  <img src={p.img} alt={p.title} className="w-full h-40 object-cover rounded-lg mb-4" />
+                <div className="p-[2px] rounded-2xl bg-gradient-to-br from-sky-600/50 to-sky-900/50 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div className="bg-[#0c1222] rounded-2xl p-6 h-full flex flex-col relative overflow-hidden">
+                    {/* Gradient Background Effect */}
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-sky-500/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
+                    
+               
 
-                  <h4 className="text-xl font-semibold text-white">{p.title}</h4>
+                    {/* Project Title */}
+                    <h4 className="text-xl font-semibold text-white mb-3 relative z-10">
+                      {project.title}
+                    </h4>
 
-                  <p className="text-gray-300 text-sm mt-3 flex-1">{p.desc}</p>
+                    {/* Project Description */}
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-1 relative z-10">
+                      {project.desc}
+                    </p>
 
-                  <div className="mt-4 flex items-center gap-2 flex-wrap">
-                    {p.tags.map((t) => (
-                      <span key={t} className="text-xs px-2 py-1 bg-white/5 border border-white/10 rounded-lg text-gray-300">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                    {/* Tags */}
+                    <div className="mb-6 relative z-10">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span 
+                            key={tag}
+                            className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-300 hover:bg-sky-500/20 hover:border-sky-400/50 transition-colors"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
 
-                  <div className="mt-6 flex gap-4">
-                    <a href={p.live} target="_blank" className="text-sm px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-200 hover:bg-sky-500/10 hover:border-sky-400 transition">
-                      Live
-                    </a>
-
-                    <a href={p.github} target="_blank" className="text-sm px-4 py-2 rounded-xl bg-sky-600 text-white hover:bg-sky-500 transition">
-                      GitHub
-                    </a>
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 relative z-10">
+                      <a 
+                        href={project.live} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-200 hover:bg-sky-500/10 hover:border-sky-400 hover:text-white transition-all text-sm font-medium"
+                      >
+                        Live Demo
+                      </a>
+                      <a 
+                        href={project.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center px-4 py-2 rounded-xl bg-sky-600 text-white hover:bg-sky-500 transition-all text-sm font-medium shadow-md hover:shadow-lg"
+                      >
+                        Code
+                      </a>
+                    </div>
                   </div>
                 </div>
               </motion.div>
